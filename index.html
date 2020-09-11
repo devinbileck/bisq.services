@@ -1,9 +1,97 @@
-<pre><small> _     _                                 _               
-| |   (_)                               (_)              
-| |__  _ ___  __ _   ___  ___ _ ____   ___  ___ ___  ___ 
-| '_ \| / __|/ _` | / __|/ _ \ '__\ \ / / |/ __/ _ \/ __|
-| |_) | \__ \ (_| |_\__ \  __/ |   \ V /| | (_|  __/\__ \
-|_.__/|_|___/\__, (_)___/\___|_|    \_/ |_|\___\___||___/
-                | |                                      
-                |_|                                      
-</small></pre>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bisq.services</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/default-dark.css" />
+    <link rel="stylesheet" href="css/btcpay.css" />
+    <script src="js/btcpay.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12 text-center mt-md-4">bisq.services</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">This domain hosts various infrastructure for the <a href="https://bisq.network" target="_blank">Bisq network</a>,
+                    operated by <a href="https://github.com/devinbileck" target="_blank">@devinbileck</a>.</p>
+
+                <div class="d-flex justify-content-center m-4">
+                    <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-circle"></i><a href="https://mempool.bisq.services" target="_blank">Bitcoin blockchain explorer with mempool visualizer and BSQ transactions</a></li>
+                        <li><i class="fa-li fa fa-circle"></i><a href="https://xmrblocks.bisq.services" target="_blank">Monero blockchain explorer</a></li>
+                        <li><i class="fa-li fa fa-circle"></i>Bitcoin full nodes
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-circle"></i>btc1.bisq.services:8333 (lva54pnbq2nsmjyr.onion:8333)</li>
+                                <li><i class="fa-li fa fa-circle"></i>btc2.bisq.services:8333 (qxjrxmhyqp5vy5hj.onion:8333)</li>
+                            </ul>
+                        </li>
+                        <li><i class="fa-li fa fa-circle"></i>Bisq seed nodes
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-circle"></i>3f3cu2yw7u457ztq.onion:8000</li>
+                                <li><i class="fa-li fa fa-circle"></i>fl3mmribyxgrv63c.onion:8000</li>
+                                <li><i class="fa-li fa fa-circle"></i>devinv3rhon24gqf5v6ondoqgyrbzyqihzyouzv7ptltsewhfmox2zqd.onion:8000</li>
+                                <li><i class="fa-li fa fa-circle"></i>devinsn2teu33efff62bnvwbxmfgbfjlgqsu3ad4b4fudx3a725eqnyd.onion:8000</li>
+                                <li><i class="fa-li fa fa-circle"></i>devinsn3xuzxhj6pmammrxpydhwwmwp75qkksedo5dn2tlmu7jggo7id.onion:8000</li>
+                            </ul>
+                        </li>
+                        <li><i class="fa-li fa fa-circle"></i>Bisq price node
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-circle"></i>devinpndvdwll4wiqcyq5e7itezmarg7rzicrvf6brzkwxdm374kmmyd.onion</li>
+                            </ul>
+                        </li>
+                        <li><i class="fa-li fa fa-circle"></i>Bisq mobile app notification relay node
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-circle"></i>jtboonrvwmq7frkj.onion (http://165.227.40.124:8080/)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-light p-2">
+                    <p class="text-center">Operational costs are mostly reimbursed through the <a href="https://bisq.network/dao/" target="_blank">Bisq DAO</a>,
+                    but if you appreciate these services,<br>consider sending me a donation which will allow me to devote more time and resources to improving the Bisq network.</p>
+                    <div class="d-flex justify-content-center m-4">
+                        <form method="POST"  onsubmit="onBTCPayFormSubmit(event);return false"  action="https://btcpay.devinbileck.com/api/v1/invoices" class="btcpay-form btcpay-form--inline">
+                            <input type="hidden" name="storeId" value="149MDebsoQA4nUSbsHiRY9tTUZxaDbqGWSq4Biv8USuk" />
+                            <input type="hidden" name="jsonResponse" value="true" />
+                            <div class="btcpay-custom-container">
+                              <div class="btcpay-custom">
+                                <button class="plus-minus" onclick="event.preventDefault(); var price = parseInt(document.querySelector('#btcpay-input-price').value); if ('-' == '-' && (price - 1) < 1) { return; } document.querySelector('#btcpay-input-price').value = parseInt(document.querySelector('#btcpay-input-price').value) - 1;">-</button>
+                                <input id="btcpay-input-price" name="price" type="text" min="1" max="1000" step="5" value="10" style="width: 3em;" oninput="event.preventDefault();isNaN(event.target.value) || event.target.value <= 0 ? document.querySelector('#btcpay-input-price').value = 10 : event.target.value"  />
+                                <button class="plus-minus" onclick="event.preventDefault(); var price = parseInt(document.querySelector('#btcpay-input-price').value); if ('+' == '-' && (price - 1) < 1) { return; } document.querySelector('#btcpay-input-price').value = parseInt(document.querySelector('#btcpay-input-price').value) + 1;">+</button>
+                              </div>
+                              <select name="currency">
+                                <option value="USD" selected>USD</option>
+                                <option value="GBP">GBP</option>
+                                <option value="EUR">EUR</option>
+                                <option value="BTC">BTC</option>
+                              </select>
+                            </div>
+                            <button type="submit" class="submit" name="submit" style="min-width:209px; min-height:57px; border-radius: 4px;border-style: none;background-color: #0f3b21;" alt="Pay with BtcPay, Self-Hosted Bitcoin Payment Processor"><span style="color:#fff">Donate with</span>
+                              <img src="https://btcpay.devinbileck.com/img/logo.svg" style="height:57px;display:inline-block;padding: 5% 0 5% 5px;">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <p class="mt-2 text-center">If you encounter any issues with these services or just want to contact me, I can be reached at any of the following:</p>
+                <div class="d-flex justify-content-center">
+                    <a target="_blank" href="https://github.com/devinbileck" title="Github"><i class="fab fa-github h2 mr-2"></i></a>
+                    <a target="_blank" href="https://twitter.com/devinbileck" title="Twitter"> <i class="fab fa-twitter h2 mr-2"></i></a>
+                    <a target="_blank" href="https://keybase.io/devinbileck" title="Keybase"> <i class="fab fa-keybase h2 mr-2"></i></a>
+                    <a target="_blank" href="mailto:devinbileck@protonmail.com?Subject=Bisq.services" title="Email"><i class="fas fa-envelope h2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
